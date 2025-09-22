@@ -5,11 +5,11 @@
 
 #include "record.h"
 
-typedef void* (*mk_index_fn)(const struct record*, int);
+typedef void* (*mk_index_fn)(const struct Record*, int);
 
 typedef void (*free_index_fn)(void*);
 
-typedef const struct record* (*lookup_fn)(void*, double, double);
+typedef const struct Record* (*lookup_fn)(void*, double, double);
 
 int coord_query_loop(int argc, char** argv, mk_index_fn, free_index_fn, lookup_fn);
 

@@ -23,13 +23,13 @@
 
 // A pointer to a function that produces an index, when called with an
 // array of records and the size of the array.
-typedef void* (*mk_index_fn)(const struct record*, int);
+typedef void* (*mk_index_fn)(const struct Record*, int);
 
 // Freeing an array produced by a mk_index_fn.
 typedef void (*free_index_fn)(void*);
 
 // Look up an ID in an index produced by mk_index_fn.
-typedef const struct record* (*lookup_fn)(void*, int64_t);
+typedef const struct Record* (*lookup_fn)(void*, int64_t);
 
 // Run a query loop, using the provided functions for managing the
 // index.

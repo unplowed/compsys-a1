@@ -11,7 +11,7 @@
 //
 // You don't need to worry about the meaning of these fields.  The
 // ones that matter are osm_id, lon, lat, and name.
-struct record {
+struct Record {
   const char *name;
   const char *alternative_names;
   const char *osm_type;
@@ -48,10 +48,10 @@ struct record {
 //
 // Expects lines of form:
 // Index,Date,Open,High,Low,Close,AdjustedClose,Volume
-struct record* read_records(const char *filename, int *n);
+struct Record* read_records(const char *filename, int *n);
 
 // Free records returned by read_records().  The 'n' argument must
 // correspond to the number of records, as produced by read_records().
-void free_records(struct record *r, int n);
+void free_records(struct Record *r, int n);
 
 #endif

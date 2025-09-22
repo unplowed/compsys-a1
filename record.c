@@ -26,7 +26,7 @@ int input_looks_ok(FILE *f) {
 
 // Read a single record from an open file.  This is pretty tedious, as
 // we handle each field explicitly.
-int read_record(struct record *r, FILE *f) {
+int read_record(struct Record *r, FILE *f) {
   char *line = NULL;
   size_t n;
   if (getline(&line, &n, f) == -1) {
@@ -138,7 +138,7 @@ int read_record(struct record *r, FILE *f) {
   return 0;
 }
 
-struct record* read_records(const char *filename, int *n) {
+struct Record* read_records(const char *filename, int *n) {
   FILE *f = fopen(filename, "r");
   *n = 0;
 
@@ -152,12 +152,12 @@ struct record* read_records(const char *filename, int *n) {
 
   int capacity = 100;
   int i = 0;
-  struct record *rs = malloc(capacity * sizeof(struct record));
+  struct Record *rs = malloc(capacity * sizeof(struct Record));
   while (read_record(&rs[i], f) == 0) {
     i++;
     if (i == capacity) {
       capacity *= 2;
-      rs = realloc(rs, capacity * sizeof(struct record));
+      rs = realloc(rs, capacity * sizeof(struct Record));
     }
   }
 
@@ -166,7 +166,7 @@ struct record* read_records(const char *filename, int *n) {
   return rs;
 }
 
-void free_records(struct record *rs, int n) {
+void free_records(struct Record *rs, int n) {
   for (int i = 0; i < n; i++) {
     free(rs[i].line);
   }

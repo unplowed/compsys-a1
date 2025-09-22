@@ -10,7 +10,7 @@ int main(int argc, char** argv) {
   }
 
   int n;
-  struct record* rs = read_records(argv[1], &n);
+  struct Record* rs = read_records(argv[1], &n);
 
   if (!rs) {
     fprintf(stderr, "Failed to read records from %s\n", argv[1]);

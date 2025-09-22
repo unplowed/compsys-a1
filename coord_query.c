@@ -17,7 +17,7 @@ int coord_query_loop(int argc, char** argv, mk_index_fn mk_index, free_index_fn 
   int n;
 
   start = microseconds();
-  struct record *rs = read_records(argv[1], &n);
+  struct Record *rs = read_records(argv[1], &n);
   runtime = microseconds()-start;
 
   if (rs) {
@@ -37,7 +37,7 @@ int coord_query_loop(int argc, char** argv, mk_index_fn mk_index, free_index_fn 
       sscanf(line, "%lf %lf", &lon, &lat);
 
       start = microseconds();
-      const struct record *r = lookup(index, lon, lat);
+      const struct Record *r = lookup(index, lon, lat);
       runtime = microseconds()-start;
 
       if (r) {
