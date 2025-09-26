@@ -22,17 +22,13 @@ struct IndexedData {
 
 struct IndexedData *mk_indexed(struct Record *records, int length) {
   struct IndexedData *data = malloc(sizeof(struct IndexedData));
-  struct IndexRecord *list = malloc(sizeof(struct IndexRecord) * length);
+  data->records = malloc(sizeof(struct IndexRecord) * length);
+  data->length = length;
 
   for (int i = 0; i < length; i++) {
-    struct IndexRecord record;
-    record.osm_id = records[i].osm_id;
-    record.record = &records[i];
-    list[i] = record;
+    data->records[i].osm_id = records[i].osm_id;
+    data->records[i].record = &records[i];
   }
-
-  data->records = list;
-  data->length = length;
 
   return data;
 }
