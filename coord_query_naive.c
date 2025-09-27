@@ -23,7 +23,6 @@ struct NaiveData *mk_naive(struct Record *records, int length) {
 }
 
 void free_naive(struct NaiveData *data) {
-  ;
   free_records(data->records, data->length);
   free(data);
 }
