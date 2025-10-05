@@ -65,8 +65,6 @@ struct KDTree *mk_kdtree(struct Record *records, int length) {
 
   struct KDTree *tree = make_tree_rec(records, length, AXIS_X);
 
-  printf("tree: %p\n", tree);
-
   return tree;
 }
 
@@ -97,7 +95,15 @@ struct KDTree *make_tree_rec(struct Record *records, int length,
   return tree;
 }
 
-void free_kdtree(struct KDTree *data) { assert(0); }
+void free_kdtree(struct KDTree *data) {
+  if (data->left != NULL)
+    free_kdtree(data->left);
+  if (data->right != NULL)
+    free_kdtree(data->right);
+
+  free(data->value);
+  free(data);
+}
 
 double dist_to_record(struct Record *record, double lat, double lon) {
   return pow(record->lat - lat, 2) + pow(record->lon - lon, 2);
@@ -127,6 +133,8 @@ const struct Record *lookup_kdtree(struct KDTree *data, double lon,
     if (e->right != NULL)
       tree[size++] = e->right;
   }
+
+  free(tree);
 
   return closest;
 }
