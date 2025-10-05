@@ -96,6 +96,7 @@ struct KDTree *make_tree_rec(struct Record *records, int length,
 }
 
 void free_kdtree(struct KDTree *data) {
+<<<<<<< HEAD
   if (data->left != NULL)
     free_kdtree(data->left);
   if (data->right != NULL)
@@ -103,6 +104,15 @@ void free_kdtree(struct KDTree *data) {
 
   free(data->value);
   free(data);
+=======
+  free(data->value);
+  free(data);
+
+  if (data->left != NULL)
+    free_kdtree(data->left);
+  if (data->left != NULL)
+    free_kdtree(data->right);
+>>>>>>> 4e47083 (free but it doesnt work)
 }
 
 double dist_to_record(struct Record *record, double lat, double lon) {
@@ -135,7 +145,6 @@ const struct Record *lookup_kdtree(struct KDTree *data, double lon,
   }
 
   free(tree);
-
   return closest;
 }
 
