@@ -31,6 +31,7 @@
               libgcc
               valgrind
               gnumake
+              lldb
               zip
             ];
           };

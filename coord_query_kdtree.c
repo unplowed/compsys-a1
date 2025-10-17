@@ -72,7 +72,7 @@ struct KDTree *make_tree_rec(struct Record *records, int length,
                              enum Axis axis) {
   struct KDTree *tree = malloc(sizeof(struct KDTree));
 
-  // 1. sort
+  // 1. sot
   qsort(records, length, sizeof(struct Record), axis_compare_func(axis));
 
   // 2. find median
